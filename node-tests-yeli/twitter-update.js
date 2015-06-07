@@ -7,10 +7,10 @@ var tsession = require("temboo/core/temboosession");
 var session = new tsession.TembooSession("yelly", "myFirstApp", "fb0516146cf34e6691dc7cdc999c35de");
 
 var Twitter = require("temboo/Library/Twitter/OAuth");
-var callback;
-var secret;
-var authorization;
-var accessTokenS;
+var twitterCallback;
+var twitterSecret;
+var twitterAuthorization;
+var twitterAccessTokenS;
 var statusUpdate = "vkjfnsvsfldmdl";
 
 var server = http.createServer(function(request, response) {
@@ -31,14 +31,14 @@ var server = http.createServer(function(request, response) {
                 initializeOAuthChoreo.execute(
             initializeOAuthInputs,
             function(results) {
-                authorization = results.get_AuthorizationURL();
+                twitterAuthorization = results.get_AuthorizationURL();
                 console.log(authorization);
-                callback = results.get_CallbackID();
-                secret = results.get_OAuthTokenSecret();
-                console.log(secret);
-                console.log(callback);
-                console.log('Heading to %s.', authorization);
-                response.writeHead(302, {'Location': authorization});
+                twitterCallback = results.get_CallbackID();
+                twitterSecret = results.get_OAuthTokenSecret();
+                console.log(twitterSecret);
+                console.log(twitterCallback);
+                console.log('Heading to %s.', twitterAuthorization);
+                response.writeHead(302, {'Location': twitterAuthorization});
                 response.end();
             },
             // On failure, give some hints as the where the problem lies.
@@ -57,8 +57,8 @@ var server = http.createServer(function(request, response) {
         var finalizeOAuthInputs = finalizeOAuthChoreo.newInputSet();
 
         // Set inputs
-        finalizeOAuthInputs.set_CallbackID(callback);
-        finalizeOAuthInputs.set_OAuthTokenSecret(secret);
+        finalizeOAuthInputs.set_CallbackID(twitterCallback);
+        finalizeOAuthInputs.set_OAuthTokenSecret(twitterSecret);
         finalizeOAuthInputs.set_Timeout("60");
         finalizeOAuthInputs.set_ConsumerSecret("XOJp8dCl4sYWDM9kEE4QoC6y52E9gWxKjAHJVmoIRcClFtCPmV");
         finalizeOAuthInputs.set_ConsumerKey("dwA1UMfMdkuigqu7wIIgrafprKLTswXb");
@@ -67,7 +67,7 @@ var server = http.createServer(function(request, response) {
         finalizeOAuthChoreo.execute(
             finalizeOAuthInputs,
             function(results){
-                    accessTokenS = results.get_AccessTokenSecret();
+                    twitterAccessTokenS = results.get_AccessTokenSecret();
 
 
                 //console.log(results.get_AccessTokenSecret());
@@ -80,8 +80,8 @@ var server = http.createServer(function(request, response) {
                 var statusesUpdateInputs = statusesUpdateChoreo.newInputSet();
 
                 // Set inputs
-                statusesUpdateInputs.set_AccessToken(accessToken);
-                statusesUpdateInputs.set_AccessTokenSecret(accessTokenS);
+                statusesUpdateInputs.set_AccessToken(twitterAccessToken);
+                statusesUpdateInputs.set_AccessTokenSecret(twitterAccessTokenS);
                 statusesUpdateInputs.set_ConsumerSecret("XOJp8dCl4sYWDM9kEE4QoC6y52E9gWxKjAHJVmoIRcClFtCPmV");
                 statusesUpdateInputs.set_StatusUpdate(statusUpdate);
                 statusesUpdateInputs.set_ConsumerKey("CpdG5mmQAT4RUWUP5Brp1ZhuT");
