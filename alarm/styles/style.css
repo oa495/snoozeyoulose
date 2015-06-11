@@ -7,6 +7,7 @@
 
 body {
 	background-color: #FFC757;
+	font-family: "Rokkitt";
 }
 
 a {
@@ -35,7 +36,6 @@ main, section {
 }
 main > p {
 	text-align: center;
-	text-transform: uppercase;
 }
 footer {
 	background-color: #FFC757;
@@ -69,7 +69,7 @@ input[type="text"] {
 	border: 1px solid white;
 }
 
-#about, form {
+#about, form, .setup, .connect {
 	position: absolute;
 	text-align: center;
 	left: 0;
@@ -104,10 +104,9 @@ input[type="text"] {
 	margin: auto;
 	background-color: #FF9C59; 
 }
-.more > div {
+.more > div, .setup, .connect {
 	margin-top: 300px;
 }
-
 
 .hvr-sink {
   -webkit-transform: translateZ(0);
@@ -134,17 +133,50 @@ input[type="text"] {
 	width: 400px;
 	float: center;
 	margin-top: 10%;
+	text-transform: uppercase;
+}
 
+.choose-time {
+	height: 30px;
+	border: none;
+	outline: none;
+	font-family: "Rokkitt";
+	padding: 15px;
+	margin: 2px;
+	font-size: 10px;
+}
+
+.setup {
+	height: 400px;
+}
+.connect {
+	font-size: 18px;
+	overflow: hidden;
+}
+.avenues {
+	background-color: red;
+	list-style: none;
+	text-align: center;
+}
+
+.avenues li  {
+	background-color: #FF9C59; 
+	margin: 10px;
+	display: inline-block;
 }
 
 
 
+#gmail-add, #sms-add {
+	display: none;
+}
 /*-------------------------
 	The clocks
 --------------------------*/
 
 
 #clock{
+	display: none;
 	width:370px;
 	padding:40px;
 	margin:200px auto 60px;

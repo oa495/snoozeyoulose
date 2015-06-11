@@ -1,4 +1,5 @@
 var userName;
+var user = document.getElementById('userName');
 var snoozeText = $('#snooze').offset();
 var nameForm = document.querySelector('form');
 var topPos;
@@ -41,8 +42,10 @@ function snore() {
 
 }
 function validateForm(e) {
-    var nameField = document.getElementById('name');
-  if (nameField.value == null || nameField.value == '') {
+  var nameField = document.getElementById('name');
+  userName = nameField.value;
+  storeName();
+  if (nameField.value == null || nameField.value == '' || nameField.value == 'Your name') {
     nameValid = false;
     nameField.className = "incomplete";
   } else {
@@ -50,10 +53,22 @@ function validateForm(e) {
     nameField.className = "complete";
   }
 
-  if (nameValid == false) {
+  if (nameValid == false || (localStorage.getItem("user-name") == null)) {
     e.preventDefault(); // prevent form from being submitted
   }
 }
+function storeName() {
+	if (typeof(Storage) != "undefined") {
+		console.log("stored");
+		console.log(userName);
+    // Store
+    localStorage.setItem("user-name", userName);
+
+	} else {
+	    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+	}
+}
+
 
 nameForm.addEventListener('submit', validateForm, false);
 setInterval(snore, 1000);

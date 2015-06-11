@@ -95,31 +95,36 @@ $(function() {
 	$(function(){
    		 $('#time').combodate({
    	     firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
-       	 minuteStep: 1
+       	 minuteStep: 1,
+       	 customClass: 'choose-time'
    		 });  
 	});
 
 	$('.submit').click(function () {
    		indicatedTime = $('#time').combodate('getValue');
-   		console.log("x");
-   		
+   		$('.setup').fadeOut( "slow", function() {
+   			if ($('.connect').css('display') == 'none') {
+   				$('.connect').fadeIn("slow");
+   			}
+   			/* if ($("#clock").css('display') == 'none') {
+   			 	 //$('#clock').fadeIn("slow");
+   			 }*/
+   		});
 	});
 
-
 	function check_time(){
-		console.log("dsklv");
 		if (timeNow === indicatedTime) {
 			console.log("yay!");
 			timeUp = true;
 		}
 		else {
-			console.log(indicatedTime);
-			console.log(timeNow);
-			console.log('here!');
+			//console.log(indicatedTime);
+			//console.log(timeNow);
+			//console.log('here!');
 		}
 		if (timeUp == 'true') {
 			clearTimeout(timeOut);
-			console.log("it's true!");
+			//console.log("it's true!");
 			time_is_up.fadeIn();
 		try {
       	  $('#alarm-ring')[0].play();
@@ -128,7 +133,7 @@ $(function() {
 		}
 	};
 
-	setInterval(check_time, 1000);
+	setInterval(check_time, 1000); 
 
 });
 
