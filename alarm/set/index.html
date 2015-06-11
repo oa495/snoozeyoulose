@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="container">
-            <main class="setup">
+             <main class="setup">
                 <p>Hi <span id="userName"></span>, what time do you want to wake up? </p>
                 <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="datetime">
                 <button id="setTime" class="submit" value="submit">Submit</button>
@@ -28,22 +28,22 @@
                     <input type="text" value="twitterhandle2">
                     <input type="text" value="twitterhandle3">
                     <input type="submit">
-                <form>
-                <form id="gmail-add">
-                    <input type="text" value="twitterhandle1">
-                    <input type="text" value="twitterhandle2">
-                    <input type="text" value="twitterhandle3">
-                    <input type="submit">
-                <form>
-                <form id="sms-add">
-                    <input type="text" value="twitterhandle1">
-                    <input type="text" value="twitterhandle2">
-                    <input type="text" value="twitterhandle3">
-                    <input type="submit">
-                <form>
 
+                </form>
+                <form id="gmail-add">
+                    <input type="text" value="Email 1">
+                    <input type="text" value="Email 2">
+                    <input type="text" value="Email 3">
+                    <input type="submit">
+                </form>
+                <form id="sms-add">
+                    <input type="text" value="Phone Number 1">
+                    <input type="text" value="Phone Number 2">
+                    <input type="text" value="Phone Number 3">
+                    <input type="submit">
+                </form>
             </div>
-            <div class="overlay">
+             <div class="overlay">
                 <div id="time-is-up">
                     <h2>Time's up!</h2>
                     <div class="button-holder">
@@ -58,11 +58,10 @@
                     <div class="alarm"></div>
                     <div class="digits"></div>
                 </div>
-            </div>
+            </div>   
     </body>
-
-    <script src="../scripts/setup.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../scripts/setup.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
     <script src="../scripts/combodate.js"></script>
     <script src="../scripts/time.js"></script>

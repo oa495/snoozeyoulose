@@ -151,25 +151,23 @@ input[type="text"] {
 }
 .connect {
 	font-size: 18px;
-	overflow: hidden;
+	display: none;
 }
 .avenues {
-	background-color: red;
 	list-style: none;
 	text-align: center;
 }
 
 .avenues li  {
-	background-color: #FF9C59; 
 	margin: 10px;
 	display: inline-block;
 }
-
-
-
 #gmail-add, #sms-add {
 	display: none;
 }
+
+
+
 /*-------------------------
 	The clocks
 --------------------------*/
