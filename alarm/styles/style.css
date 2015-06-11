@@ -6,8 +6,138 @@
 
 
 body {
+	background-color: #FFC757;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	opacity: 0.4;
+}
+p, img {
+	display: block;
+	margin: auto;
+}
+p {
+	font-family: "Rokkitt", sans-serif;
+	font-size: 22px;
+	padding: 10px;
+}
+img {
+	margin-top: 50px;
+	padding: 10px;
+}
+
+main, section {
+	overflow: hidden;
+	height: 100vh;
+	width: 100%;
+}
+main > p {
+	text-align: center;
+	text-transform: uppercase;
+}
+footer {
+	background-color: #FFC757;
+	height: 80px;
+}
+footer > p {
+	text-align: center;
+	display: block;
+	padding: 25px;
+	max-width: 700px;
+	font-size: 16px;
+	margin: 0 auto;
+}
+form {
+	margin-top: 50px;
+}
+input {
+	outline: none;
+	border:none;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+input[type="text"] {
+	padding: 2px 2px 2px 15px;
+	width: 170px;
+	height: 45px;
+	font-family: "Rokkitt";
+	font-size: 15px;
+	border: 1px solid white;
+}
+
+#about, form {
+	position: absolute;
+	text-align: center;
+	left: 0;
+	right: 0;
+	margin-right: auto;
+	margin-left: auto;
 
 }
+
+.submit {
+	font-size: 13px;
+	border: 5px solid white;
+	width: 170px;
+	height: 50px;
+	background-color: #FFC757;
+	text-transform: uppercase;
+}
+.submit:hover {
+	color: white;
+	background-color: #FF9C59; 
+}
+.z {
+  position: absolute;
+  font-family: sans-serif;
+  color: white;
+  font-size: 0;
+}
+
+
+.more {
+	height: 100vh;
+	margin: auto;
+	background-color: #FF9C59; 
+}
+.more > div {
+	margin-top: 300px;
+}
+
+
+.hvr-sink {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-sink:hover, .hvr-sink:focus, .hvr-sink:active {
+  -webkit-transform: translateY(10px);
+  transform: translateY(px);
+}
+
+#tag-line {
+	font-size: 80px;
+	font-family: "Paytone One";
+	font-weight: bold;
+	width: 400px;
+	float: center;
+	margin-top: 10%;
+
+}
+
+
 
 /*-------------------------
 	The clocks
