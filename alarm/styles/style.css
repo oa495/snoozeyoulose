@@ -247,9 +247,6 @@ input[type="text"] {
 	background-color:#272e38;
 }
 
-#clock.light .alarm{
-	background:url('../img/alarm_light.jpg');
-}
 
 #clock.light .display{
 	background-color:#dddddd;
@@ -276,9 +273,7 @@ input[type="text"] {
 	border-color:#cacaca;	
 }
 
-#clock.dark .alarm{
-	background:url('../img/alarm_dark.jpg');
-}
+
 
 #clock.dark .display{
 	background-color:#0f1620;
@@ -483,7 +478,6 @@ input[type="text"] {
 	width:16px;
 	height:16px;
 	bottom:20px;
-	background:url('../img/alarm_light.jpg');
 	position:absolute;
 	opacity:0.2;
 }

@@ -13,10 +13,6 @@
                 <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="datetime">
                 <button id="setTime" class="submit" value="submit">Submit</button>
             </main>
-            <audio id="alarm-ring" preload>
-                <source src="../sounds/alarm.mp3" type="audio/mpeg" />
-                <source src="../sounds/alarm.ogg" type="audio/ogg" />
-            </audio>
             <div class="connect">
                 <ul class="avenues">
                     <li id="twitter">Connect with Twitter.</li>
@@ -47,6 +43,10 @@
                     </div>
                 </div>
             </div>
+             <audio id="alarm-ring" preload="auto">
+                <source src="../sounds/alarm.ogg" type="audio/ogg" />
+                <source src="../sounds/alarm.mp3" type="audio/mpeg" />
+            </audio>
              <div id="clock" class="light">
                 <div class="display">
                     <div class="weekdays"></div>
@@ -60,7 +60,6 @@
     <script src="../scripts/setup.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
     <script src="../scripts/combodate.js"></script>
-    <script src="../scripts/time.js"></script>
 
 </html>
 
