@@ -97,7 +97,9 @@ input[type="text"] {
   color: white;
   font-size: 0;
 }
-
+.message {
+	width: 800px;
+}
 
 .more {
 	height: 100vh;
@@ -159,15 +161,33 @@ input[type="text"] {
 }
 
 .avenues li  {
-	margin: 10px;
+	padding: 10px;
 	display: inline-block;
 }
 #gmail-add, #sms-add {
 	display: none;
 }
 
+.connect-form {
+	max-width: 200px;
+}
+.connect-form input[type="text"] {
+	width: 200px;
+	margin: 8px;
+}
+#twitter-submit, #gmail-submit, #sms-submit {
+	position: relative;
+	background-color: green;
+	display: block;
+	margin: 30px auto;
+}
+.incomplete {
+   background-color: rgba(255, 218, 241, 0.5);
+}
 
-
+.complete {
+    background-color: white;
+}
 /*-------------------------
 	The clocks
 --------------------------*/

@@ -100,11 +100,12 @@ $(function() {
    		 });  
 	});
 
-	$('.submit').click(function () {
+	$('#setTime').click(function () {
    		indicatedTime = $('#time').combodate('getValue');
    		$('.setup').fadeOut( "slow", function() {
    			if ($('.connect').css('display') == 'none') {
    				$('.connect').fadeIn("slow");
+   				console.log("set time submit");
    			}
    			/* if ($("#clock").css('display') == 'none') {
    			 	 //$('#clock').fadeIn("slow");
@@ -116,6 +117,9 @@ $(function() {
 		if (timeNow === indicatedTime) {
 			console.log("yay!");
 			timeUp = true;
+			//localStorage.getItem("twitter1");
+			//localStorage.getItem("email1");
+			//localStorage.getItem("number1");
 		}
 		else {
 			//console.log(indicatedTime);
