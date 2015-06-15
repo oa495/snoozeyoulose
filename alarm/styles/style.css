@@ -79,7 +79,7 @@ input[type="text"] {
 
 }
 
-.submit {
+.button {
     font-size: 13px;
     border: 5px solid white;
     width: 170px;
@@ -87,8 +87,7 @@ input[type="text"] {
     background-color: #FFC757;
     text-transform: uppercase;
 }
-.submit:hover {
-    color: white;
+.button:hover {
     background-color: #FF9C59; 
 }
 .z {
@@ -109,6 +108,7 @@ input[type="text"] {
 .more > div, .setup, .connect {
     margin-top: 300px;
 }
+
 
 .hvr-sink {
   -webkit-transform: translateZ(0);
@@ -188,6 +188,49 @@ input[type="text"] {
 .complete {
     background-color: white;
 }
+
+.overlay{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color:rgba(0,0,0,0.2);
+    z-index:10;
+}
+.close:hover {
+    background-color: #FFC757;
+}
+#time-is-up{
+    width:500px;
+    height:375px;
+    background-color:#fff;
+    border-radius:2px;
+    position:fixed;
+    top:200px;
+    left:50%;
+    margin-left:-250px;
+    text-align:center;
+}
+
+.button-holder .button{
+    padding:13px 22px;
+    margin:3px;
+}
+
+#time-is-up{
+    height: 240px;
+}
+
+#time-is-up h2{
+    padding: 60px 0 40px;
+    font-size: 40px;
+}
+
+#time-is-up .button{
+    padding: 12px 20px;
+}
 /*-------------------------
     The clocks
 --------------------------*/
@@ -221,6 +264,8 @@ input[type="text"] {
     position:relative;
     height: 54px;
 }
+
+
 
 
 /*-------------------------
@@ -522,9 +567,6 @@ input[type="text"] {
     bottom:20px;
     right:20px;
     font-size:12px;
-}
-.overlay {
-    display: none;
 }
 
 
