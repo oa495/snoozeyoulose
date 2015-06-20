@@ -12,6 +12,35 @@ var gmailComplete = false;
 var alarmStopped = false;
 
 $(function() {
+	   var username;
+      
+      var username, UIState = {};
+      
+      UIState.authenticated = function() {
+        $('#login-form').addClass('hidden');
+        $('#logged-in').removeClass('hidden');
+        $('.username').text(username);
+      };
+      
+      UIState.unauthenticated = function() {
+        $('#login-form').removeClass('hidden');
+        $('#logged-in').addClass('hidden');
+        $('.username').text('');
+      };
+      
+      UIState.initial = function() {
+        console.log('initial');
+      
+        $audioRingIn[0].pause();
+        $audioRingOut[0].pause();
+
+      };    
+        $('#call-form p, #incoming-call p, #call-connected p').text('');
+        $('#incoming-call, #call-connected, .call-terminator, #resume-call-btn').addClass('hidden');
+        $('#call-form, .call-initializer').removeClass('hidden')
+
+       var userArray = [];
+
 	$('#twitter').click(function () {
 		if (twitterDisplayed == false) {
 			$('#twitter-add').show();
@@ -64,11 +93,31 @@ $(function() {
 		gmailComplete = true;
 	});
 	$('#sms-submit').click(function() {
-		number1 = $("#number1").val();
+		event.preventDefault();
+		username = 'user1@snoozeyoulose.gmail.com'
+        var apiKey = 'DAK02c0a220842d4a4ea87824de0474cd0f'
+        var password = '1voluptasaliquame1'
+      
+        /** login(domainApiId, userName, password,success,failure)
+            logs in user to Kandy Platform
+            @params <string> domainApiId, <string> userName, <string> password, <function> success/failure
+        */
+        kandy.login(apiKey, username, password,function(msg){
+      
+               userArray.push(username);
+               kandy.getLastSeen(userArray);
+               UIState.authenticated();
+           },	
+           function(msg){
+               UIState.unauthenticated();
+               alert('Login Failed!');
+           });
+        number1 = $("#number1").val();
 		console.log(number1);
 		localStorage.setItem("number1", number1);
+
 		$("#sms-submit").html("Thanks!");
-		event.preventDefault();
+		
 		smsComplete = true;
 	});
 	function complete() {
@@ -221,7 +270,27 @@ $(function() {
 
 		if (alarmStopped != true) {
 			console.log("you're screwed");
-			
+		  var sender = localStorage.getItem("user-name");
+		  console.log(number1);
+		  console.log(sender);
+          var receiver = number1;
+          var message = "hey sup";
+      
+
+      	//kandy.messaging.sendSMS(number (string), sender(object), text (string), success, failure) : Void
+
+      	//FOR RECEIVER, PUT COUNTRY CODE FIRST, NO NON-NUMERIC CHARACTERS
+          kandy.messaging.sendSMS(
+            receiver,
+            sender,
+            message,
+            function() {
+              alert('sms sent');
+            },
+            function(message, status) {
+              alert(message + status + ' message not sent!');
+            }
+          );
 		}
 	}
 	var alarmTime = setInterval(check_time, 1000); 
