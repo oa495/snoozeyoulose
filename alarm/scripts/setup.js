@@ -269,9 +269,9 @@ $(function() {
 		m2 = now[3];
 		zone = now[7]+now[8];
 
-
-
-		timeNow = h1+h2+":"+m1+m2;
+		timeNow = h1+h2+":"+m1+m2+ " "+zone;
+		timeNow = timeNow.toLowerCase();
+		console.log(timeNow);
 		digits.h1.attr('class', digitToName[now[0]]);
 		digits.h2.attr('class', digitToName[now[1]]);
 		digits.m1.attr('class', digitToName[now[2]]);
@@ -316,6 +316,8 @@ $(function() {
 	$('#setTime').click(function () {
 		alarmSet = true;
    		indicatedTime = $('#time').combodate('getValue');
+   		indicatedTime = "0" + indicatedTime;
+   		console.log(indicatedTime);
    		$('.setup').fadeOut( "slow", function() {
    			if ($('.connect').css('display') == 'none') {
    				$('.connect').fadeIn("slow");
