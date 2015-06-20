@@ -11,7 +11,7 @@
              <main class="setup">
                 <p>Hi <span id="userName"></span>, what time do you want to wake up? </p>
                 <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="datetime">
-                <button id="setTime" class="submit" value="submit">Submit</button>
+                <button id="setTime" class="button" value="submit">Submit</button>
             </main>
             <div class="connect">
                 <ul class="avenues">
@@ -20,26 +20,27 @@
                     <li id="text">Connect with SMS.</li>
                 </ul>
                 <form class="connect-form" id="twitter-add">
-                    <input type="text" id="twitterHandle1" value="twitterhandle1">
-                    Message: <input class="message" type="text" value="I am an idiot who can't wake up to the sound of my alarm. You should fire me.">
-                    <button id="twitter-submit" class="submit" value="submit">Submit</button>
+                    <input type="text" id="twitterHandle1" value="@twitterhandle1">
+                    Message: <input id="tweet" class="message" type="text" value="I am an idiot who can't wake up to the sound of my alarm. You should fire me.">
+                    <p>You have <em id="count"></em> characters remaining</p>
+                    <button id="twitter-submit" class="button" value="submit">Submit</button>
                 </form>
                 <form class="connect-form" id="gmail-add">
-                    <input type="text" id="emailTo1"value="Email 1">
+                    <input type="text" id="emailTo1"value="email@email.com">
                      Message: <input class="message" type="text" value="I am an idiot who can't wake up to the sound of my alarm. You should fire me.">
-                     <button id="gmail-submit" class="submit" value="submit">Submit</button>
+                     <button id="gmail-submit" class="button" value="submit">Submit</button>
                 </form>
                 <form class="connect-form" id="sms-add">
-                    <input type="text" id="number1" value="Phone Number 1">
+                    <input type="text" id="number1" value="19100000000">
                      Message: <input class="message" type="text" value="I am an idiot who can't wake up to the sound of my alarm. You should fire me.">
-                     <button id="sms-submit" class="submit" value="submit">Submit</button>
+                     <button id="sms-submit" class="button" value="submit">Submit</button>
                 </form>
             </div>
              <div class="overlay">
                 <div id="time-is-up">
                     <h2>Time's up!</h2>
                     <div class="button-holder">
-                        <button class="button">Snooze</button>
+                        <button id="end-alarm" class="button close">Close</button>
                     </div>
                 </div>
             </div>
@@ -57,9 +58,12 @@
             </div>   
     </body>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="https://kandy-portal.s3.amazonaws.com/public/javascript/fcs/3.0.4/fcs.js" ></script>
+    <script src="https://kandy-portal.s3.amazonaws.com/public/javascript/kandy/2.2.2/kandy.js" ></script>
     <script src="../scripts/setup.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
     <script src="../scripts/combodate.js"></script>
+
 
 </html>
 
