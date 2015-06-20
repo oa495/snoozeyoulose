@@ -10,6 +10,8 @@ var twitterComplete = false;
 var smsComplete = false;
 var gmailComplete = false;
 var alarmStopped = false;
+var number1Valid, email1Valid, twitter1Valid;
+
 
 $(function() {
 	   var username;
@@ -39,8 +41,7 @@ $(function() {
         $('#incoming-call, #call-connected, .call-terminator, #resume-call-btn').addClass('hidden');
         $('#call-form, .call-initializer').removeClass('hidden')
 
-       var userArray = [];
-
+    var userArray = [];
 	$('#twitter').click(function () {
 		if (twitterDisplayed == false) {
 			$('#twitter-add').show();
@@ -75,23 +76,78 @@ $(function() {
 			smsDisplayed = true;
 		}
 	});
-	$('#twitter-submit').click(function() {
-		tHandle1 = $("#twitterHandle1").val();
-		console.log(tHandle1);
-		localStorage.setItem("twitter1", tHandle1);
-		$("#twitter-submit").html("Thanks!");
-		event.preventDefault();
-		twitterComplete = true;
+
+
+	var maxCharacters = 130;
+	var characters = $('#tweet').val().length;
+	var twitterHandle = $('#twitterHandle1').val().length;
+	var total = characters + twitterHandle;
+	var overCharacters = false;
+	$('#count').text(maxCharacters - total);
+
+	$('#tweet, #twitterHandle1').bind('keyup keydown', function() {
+		var count = $('#count');
+		characters = $('#tweet').val().length;
+		twitterHandle = $('#twitterHandle1').val().length;
+		total = characters + twitterHandle;
+		if (total > maxCharacters) {
+		    count.addClass('over');
+		    overCharacters = true;
+		} else {
+		    count.removeClass('over');
+		}
+		count.text(maxCharacters - total);
 	});
+
+
+	$('#twitter-submit').click(function() {
+		event.preventDefault();
+		tHandle1 = $("#twitterHandle1").val();
+		if (tHandle1 == null || tHandle1 == '' || tHandle1 == "@twitterhandle1") {
+			console.log("twitter wrong");
+			twitter1Valid = false;
+			$('#twitterHandle1').attr('class', 'incomplete');
+		}
+		else if (tHandle1.indexOf('@') != 0) {
+			console.log("twitter wrong 1");
+			twitter1Valid = false;
+		    $('#twitterHandle1').attr('class', 'incomplete');
+		    tHandle1.textContent = "Remember to put the @ sign.";
+		}
+		else {
+			if (!overCharacters) {
+				console.log("twitter true");
+				 $('#twitterHandle1').attr('class', 'complete');
+				localStorage.setItem("twitter1", tHandle1);
+				$("#twitter-submit").html("Thanks!");
+				twitterComplete = true;
+			}
+		}
+	});
+
 	$('#gmail-submit').click(function() {
 		event.preventDefault();
 		email1 = $("#emailTo1").val();
-		console.log(email1);
-		localStorage.setItem("email1", email1);
-		$("#gmail-submit").html("Thanks!");
-		event.preventDefault();
-		gmailComplete = true;
+		//console.log(email1);
+		 if (email1 == null || email1 == '' || email1 == "email@email.com") {
+		 	//console.log("gmail wrong1");
+		    email1Valid = false;
+		     $('#emailTo1').attr('class', 'incomplete');
+		  } else if (email1.indexOf('@') == -1) { // if no @ symbol
+		  	//console.log("gmail wrong");
+		    email1Valid = false;
+		     $('#emailTo1').attr('class', 'incomplete');
+		    email1.textContent = "Please enter a valid email address.";
+		  } else {
+		  //	console.log("gmail true");
+		    emailValid = true;
+		    $('#emailTo1').attr('class', 'complete');
+		    localStorage.setItem("email1", email1);
+			$("#gmail-submit").html("Thanks!");
+			gmailComplete = true;
+		  }
 	});
+
 	$('#sms-submit').click(function() {
 		event.preventDefault();
 		username = 'user1@snoozeyoulose.gmail.com'
@@ -113,13 +169,28 @@ $(function() {
                alert('Login Failed!');
            });
         number1 = $("#number1").val();
-		console.log(number1);
-		localStorage.setItem("number1", number1);
 
-		$("#sms-submit").html("Thanks!");
-		
-		smsComplete = true;
+        if (number1 == null || number1 == '' || number1 == "19100000000") {
+        	console.log("wrong 1");
+        	number1Valid = false;
+        	$("#number1").attr('class', 'incomplete');
+        }
+        else if (number1.substring(1) !== 1 || number1.length() !== 11) {
+        	console.log("wrong 2");
+        	number1Valid = false;
+        	number1.textContent = "Make sure you add 1 to the beginning";
+        	$("#number1").attr('class', 'incomplete');
+        }
+        else {
+        	console.log("right");
+        	localStorage.setItem("number1", number1);
+        	$("#sms-submit").html("Thanks!");
+        	$("#number1").attr('class', 'incomplete');
+			smsComplete = true;
+        }
+		console.log(number1);
 	});
+
 	function complete() {
 		if ((smsComplete) && (gmailComplete) && (twitterComplete)) {
 			console.log("everything!");
@@ -130,6 +201,10 @@ $(function() {
    				 }
 			});
 		}
+	}
+
+	function validateData() {
+
 	}
 
 

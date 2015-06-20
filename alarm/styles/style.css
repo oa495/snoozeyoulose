@@ -21,7 +21,7 @@ p, img {
 }
 p {
     font-family: "Rokkitt", sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     padding: 10px;
 }
 img {
@@ -107,6 +107,9 @@ input[type="text"] {
 }
 .more > div, .setup, .connect {
     margin-top: 300px;
+}
+.over {
+    color: red;
 }
 
 
