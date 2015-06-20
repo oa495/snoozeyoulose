@@ -11,6 +11,13 @@ var smsComplete = false;
 var gmailComplete = false;
 var alarmStopped = false;
 var number1Valid, email1Valid, twitter1Valid;
+var alarmSet = false;
+
+window.onbeforeunload = function(e) {
+	if (alarmSet) {
+	 	return 'Are you sure you want to refresh? All your information will be lost.';
+	}
+};
 
 
 $(function() {
@@ -175,7 +182,7 @@ $(function() {
         	number1Valid = false;
         	$("#number1").attr('class', 'incomplete');
         }
-        else if (number1.substring(1) !== 1 || number1.length() !== 11) {
+        else if (number1.substring(0, 1) != 1 || number1.length !== 11) {
         	console.log("wrong 2");
         	number1Valid = false;
         	number1.textContent = "Make sure you add 1 to the beginning";
@@ -185,7 +192,7 @@ $(function() {
         	console.log("right");
         	localStorage.setItem("number1", number1);
         	$("#sms-submit").html("Thanks!");
-        	$("#number1").attr('class', 'incomplete');
+        	$("#number1").attr('class', 'complete');
 			smsComplete = true;
         }
 		console.log(number1);
@@ -202,11 +209,6 @@ $(function() {
 			});
 		}
 	}
-
-	function validateData() {
-
-	}
-
 
 	var ifDone = setInterval(complete, 1000); 
 });
@@ -315,6 +317,7 @@ $(function() {
 	});
 
 	$('#setTime').click(function () {
+		alarmSet = true;
    		indicatedTime = $('#time').combodate('getValue');
    		$('.setup').fadeOut( "slow", function() {
    			if ($('.connect').css('display') == 'none') {
@@ -344,28 +347,30 @@ $(function() {
 		});
 
 		if (alarmStopped != true) {
+			setTimeout(function() {
 			console.log("you're screwed");
-		  var sender = localStorage.getItem("user-name");
-		  console.log(number1);
-		  console.log(sender);
-          var receiver = number1;
-          var message = "hey sup";
-      
+			  var sender = localStorage.getItem("user-name");
+			  console.log(number1);
+			  console.log(sender);
+	          var receiver = number1;
+	          var message = "hey sup";
+	      
 
-      	//kandy.messaging.sendSMS(number (string), sender(object), text (string), success, failure) : Void
+	      	//kandy.messaging.sendSMS(number (string), sender(object), text (string), success, failure) : Void
 
-      	//FOR RECEIVER, PUT COUNTRY CODE FIRST, NO NON-NUMERIC CHARACTERS
-          kandy.messaging.sendSMS(
-            receiver,
-            sender,
-            message,
-            function() {
-              alert('sms sent');
-            },
-            function(message, status) {
-              alert(message + status + ' message not sent!');
-            }
-          );
+	      	//FOR RECEIVER, PUT COUNTRY CODE FIRST, NO NON-NUMERIC CHARACTERS
+	          kandy.messaging.sendSMS(
+	            receiver,
+	            sender,
+	            message,
+	            function() {
+	              alert('sms sent');
+	            },
+	            function(message, status) {
+	              alert(message + status + ' message not sent!');
+	            }
+	          );
+			}, 10000);
 		}
 	}
 	var alarmTime = setInterval(check_time, 1000); 

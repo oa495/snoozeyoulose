@@ -44,12 +44,12 @@ function snore() {
 function validateForm(e) {
   var nameField = document.getElementById('name');
   userName = nameField.value;
-  storeName();
   if (nameField.value == null || nameField.value == '' || nameField.value == 'Your name') {
     nameValid = false;
     nameField.className = "incomplete";
   } else {
     nameValid = true;
+     storeName();
     nameField.className = "complete";
   }
 
