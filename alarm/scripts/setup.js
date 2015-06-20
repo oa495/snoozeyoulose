@@ -14,9 +14,7 @@ var number1Valid, email1Valid, twitter1Valid;
 var alarmSet = false;
 
 window.onbeforeunload = function(e) {
-	if (alarmSet) {
-	 	return 'Are you sure you want to refresh? All your information will be lost.';
-	}
+	 return 'Are you sure you want to refresh? All your information will be lost.';
 };
 
 
@@ -185,7 +183,6 @@ $(function() {
         else if (number1.substring(0, 1) != 1 || number1.length !== 11) {
         	console.log("wrong 2");
         	number1Valid = false;
-        	number1.textContent = "Make sure you add 1 to the beginning";
         	$("#number1").attr('class', 'incomplete');
         }
         else {
@@ -327,6 +324,30 @@ $(function() {
    		});
 	});
 
+	function reset() {
+		alarmSet = false;
+		timeUp = false;
+		timeIsUp.fadeOut();
+   		$('#clock').fadeOut("slow", function() {
+   			$('.setup').fadeIn("slow");
+   		});
+   		twitterDisplayed = true;
+		smsDisplayed = false;
+		gmailDisplayed = false;
+		twitterComplete = false;
+		smsComplete = false;
+		gmailComplete = false;
+		alarmStopped = false;
+		number1Valid = false;
+		email1Valid = false;
+		twitter1Valid = false;
+		$("#twitter-submit").html("Submit");
+		$("#sms-submit").html("Submit");
+		$("#gmail-submit").html("Submit");
+		$("#twitterHandle1").val('@twitterhandle1');
+		$("#emailTo1").val('email@email.com');
+		$("#number1").val('19100000000');
+	}
 	function check_time(){
 		if (timeNow === indicatedTime) {
 			console.log("yay!");
@@ -348,7 +369,8 @@ $(function() {
 
 		if (alarmStopped != true) {
 			setTimeout(function() {
-			console.log("you're screwed");
+			  alert("sent!");
+			  console.log("you're screwed");
 			  var sender = localStorage.getItem("user-name");
 			  console.log(number1);
 			  console.log(sender);
@@ -370,8 +392,10 @@ $(function() {
 	              alert(message + status + ' message not sent!');
 	            }
 	          );
-			}, 10000);
+			}, 600000);
 		}
+
+		reset();
 	}
 	var alarmTime = setInterval(check_time, 1000); 
 
