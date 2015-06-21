@@ -67,6 +67,7 @@ var server = http.createServer(function(request, response) {
             finalizeOAuthInputs,
             function(results){
                 twitterAccessTokenS = results.get_AccessTokenSecret();
+                twitterAccessToken = results.get_AccessToken();
                 console.log("1");
 
                 console.log(results.get_AccessTokenSecret());
