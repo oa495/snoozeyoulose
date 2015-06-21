@@ -12,7 +12,8 @@ var googleCallback;
 var googleAccessToken;
 
 var googleRefreshToken = "1/2jsrGJBz2MA3ExkI1u6cyBuhQeobzrqoOGDqe56z_To";
-var emailTo = "omayeli@nyu.edu";
+var emailTo = "terri.burns@nyu.edu";
+var emailFrom = "oa495@nyu.edu";
 var messageBody= "Hi what's up";
 var subject = "Hey";
 
@@ -77,11 +78,14 @@ var server = http.createServer(function(request, response) {
 				// Set inputs
 				sendMessageInputs.set_ClientSecret("_OdZU2sJHCeZBTOj1bQVvnJL");
 				sendMessageInputs.set_MessageBody(messageBody);
-				sendMessageInputs.set_AccessToken(googleAccessToken);
 				sendMessageInputs.set_Subject(subject);
-				sendMessageInputs.set_To(emailTo);
 				sendMessageInputs.set_RefreshToken(googleRefreshToken);
+				sendMessageInputs.set_To(emailTo);
+				sendMessageInputs.set_AccessToken(googleAccessToken);
 				sendMessageInputs.set_ClientID("125650164826-jfcls91s5i7ta1et789r9bvq05lrfatj.apps.googleusercontent.com");
+				sendMessageInputs.set_From(emailTo);
+				
+
 
 				// Run the choreo, specifying success and error callback handlers
 				sendMessageChoreo.execute(

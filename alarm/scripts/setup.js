@@ -109,19 +109,19 @@ $(function() {
 		event.preventDefault();
 		tHandle1 = $("#twitterHandle1").val();
 		if (tHandle1 == null || tHandle1 == '' || tHandle1 == "@twitterhandle1") {
-			console.log("twitter wrong");
+			//console.log("twitter wrong");
 			twitter1Valid = false;
 			$('#twitterHandle1').attr('class', 'incomplete');
 		}
 		else if (tHandle1.indexOf('@') != 0) {
-			console.log("twitter wrong 1");
+			//console.log("twitter wrong 1");
 			twitter1Valid = false;
 		    $('#twitterHandle1').attr('class', 'incomplete');
 		    tHandle1.textContent = "Remember to put the @ sign.";
 		}
 		else {
 			if (!overCharacters) {
-				console.log("twitter true");
+				//console.log("twitter true");
 				 $('#twitterHandle1').attr('class', 'complete');
 				localStorage.setItem("twitter1", tHandle1);
 				$("#twitter-submit").html("Thanks!");
@@ -176,28 +176,28 @@ $(function() {
         number1 = $("#number1").val();
 
         if (number1 == null || number1 == '' || number1 == "19100000000") {
-        	console.log("wrong 1");
+        	//console.log("wrong 1");
         	number1Valid = false;
         	$("#number1").attr('class', 'incomplete');
         }
         else if (number1.substring(0, 1) != 1 || number1.length !== 11) {
-        	console.log("wrong 2");
+        	//console.log("wrong 2");
         	number1Valid = false;
         	$("#number1").attr('class', 'incomplete');
         }
         else {
-        	console.log("right");
+        	//console.log("right");
         	localStorage.setItem("number1", number1);
         	$("#sms-submit").html("Thanks!");
         	$("#number1").attr('class', 'complete');
 			smsComplete = true;
         }
-		console.log(number1);
+		//console.log(number1);
 	});
 
 	function complete() {
 		if ((smsComplete) && (gmailComplete) && (twitterComplete)) {
-			console.log("everything!");
+			//console.log("everything!");
 			clearInterval(ifDone);
 			$(".connect").fadeOut("slow", function() {
 				 if ($("#clock").css('display') == 'none') {
@@ -243,7 +243,7 @@ $(function() {
 				pos.append('<span class="d' + i + '">');
 			}
 			digits[this] = pos;
-			console.log(pos);
+			//console.log(pos);
 
 			// Add the digit elements to the page
 			digit_holder.append(pos);
@@ -271,7 +271,7 @@ $(function() {
 
 		timeNow = h1+h2+":"+m1+m2+ " "+zone;
 		timeNow = timeNow.toLowerCase();
-		console.log(timeNow);
+		//console.log(timeNow);
 		digits.h1.attr('class', digitToName[now[0]]);
 		digits.h2.attr('class', digitToName[now[1]]);
 		digits.m1.attr('class', digitToName[now[2]]);
@@ -317,7 +317,7 @@ $(function() {
 		alarmSet = true;
    		indicatedTime = $('#time').combodate('getValue');
    		indicatedTime = "0" + indicatedTime;
-   		console.log(indicatedTime);
+   		//console.log(indicatedTime);
    		$('.setup').fadeOut( "slow", function() {
    			if ($('.connect').css('display') == 'none') {
    				$('.connect').fadeIn("slow");
@@ -352,19 +352,19 @@ $(function() {
 	}
 	function check_time(){
 		if (timeNow === indicatedTime) {
-			console.log("yay!");
+			//console.log("yay!");
 			clearInterval(alarmTime);
 			timeIsUp.fadeIn();
       	 	$('#alarm-ring')[0].play();
       	 	setTimeout(sendMessages, 2000);
       	 	//change to 60s 
-      	 	console.log("played!");
-		}
+      	 	//console.log("played!");
+		}	
 	};
 
 	function sendMessages() {
 		$("#end-alarm").click(function(){
-			console.log("ended");
+			//console.log("ended");
 			timeIsUp.fadeOut();
 			alarmStopped = true;
 		});
@@ -372,10 +372,10 @@ $(function() {
 		if (alarmStopped != true) {
 			setTimeout(function() {
 			  alert("sent!");
-			  console.log("you're screwed");
+			  //console.log("you're screwed");
 			  var sender = localStorage.getItem("user-name");
-			  console.log(number1);
-			  console.log(sender);
+			 // console.log(number1);
+			 // console.log(sender);
 	          var receiver = number1;
 	          var message = "hey sup";
 	      
