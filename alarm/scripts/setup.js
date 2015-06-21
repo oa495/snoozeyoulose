@@ -371,6 +371,7 @@ $(function() {
 
 		if (alarmStopped != true) {
 			setTimeout(function() {
+			  reset();
 			  alert("sent!");
 			  //console.log("you're screwed");
 			  var sender = localStorage.getItem("user-name");
@@ -396,8 +397,6 @@ $(function() {
 	          );
 			}, 600000);
 		}
-
-		reset();
 	}
 	var alarmTime = setInterval(check_time, 1000); 
 
