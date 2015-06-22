@@ -316,7 +316,12 @@ $(function() {
 	$('#setTime').click(function () {
 		alarmSet = true;
    		indicatedTime = $('#time').combodate('getValue');
-   		indicatedTime = "0" + indicatedTime;
+   		console.log(indicatedTime);
+   		console.log(indicatedTime.substring(1, 2));
+   		if (indicatedTime.substring(1, 2) === ":") {
+   			indicatedTime = "0" + indicatedTime;
+   			console.log("added");
+   		}
    		//console.log(indicatedTime);
    		$('.setup').fadeOut( "slow", function() {
    			if ($('.connect').css('display') == 'none') {
