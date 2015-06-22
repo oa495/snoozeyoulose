@@ -352,7 +352,7 @@ $(function() {
 	}
 	function check_time(){
 		if (timeNow === indicatedTime) {
-			console.log("yay!");
+			//console.log("yay!");
 			clearInterval(alarmTime);
 			timeIsUp.fadeIn();
       	 	$('#alarm-ring')[0].play();
