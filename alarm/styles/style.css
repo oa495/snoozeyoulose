@@ -38,7 +38,7 @@ main > p {
     text-align: center;
 }
 footer {
-    background-color: #FFC757;
+    background-color: #FF9C59; 
     height: 80px;
 }
 footer > p {
@@ -77,6 +77,15 @@ input[type="text"] {
     margin-right: auto;
     margin-left: auto;
 
+}
+.explain {
+    height: 500px;
+}
+.detailed-about {
+    max-width: 650px;
+    position: relative;
+    text-indent: 40px;
+    margin-top: 200px;
 }
 
 .button {
