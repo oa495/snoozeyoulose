@@ -383,10 +383,8 @@ $(function() {
 			 // console.log(number1);
 			 // console.log(sender);
 	          var receiver = number1;
-	          var message = "hey sup";
+	          var message = "I'm an idiot who can't wake up to the sound of my alarm.";
 	      
-
-	      	//kandy.messaging.sendSMS(number (string), sender(object), text (string), success, failure) : Void
 
 	      	//FOR RECEIVER, PUT COUNTRY CODE FIRST, NO NON-NUMERIC CHARACTERS
 	          kandy.messaging.sendSMS(
@@ -400,7 +398,7 @@ $(function() {
 	              alert(message + status + ' message not sent!');
 	            }
 	          );
-			}, 600000);
+			}, 60000);
 		}
 	}
 	var alarmTime = setInterval(check_time, 1000); 
