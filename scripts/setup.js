@@ -12,6 +12,7 @@ var gmailComplete = false;
 var alarmStopped = false;
 var number1Valid, email1Valid, twitter1Valid;
 var alarmSet = false;
+var smsMessage;
 
 window.onbeforeunload = function(e) {
 	 return 'Are you sure you want to refresh? All your information will be lost.';
@@ -188,6 +189,7 @@ $(function() {
         else {
         	//console.log("right");
         	localStorage.setItem("number1", number1);
+        	smsMessage = $('#sms-message').val();
         	$("#sms-submit").html("Thanks!");
         	$("#number1").attr('class', 'complete');
 			smsComplete = true;
@@ -332,6 +334,7 @@ $(function() {
 	});
 
 	function reset() {
+	   $('#alarm-ring')[0].stop();
 		alarmSet = false;
 		timeUp = false;
 		timeIsUp.fadeOut();
@@ -360,7 +363,7 @@ $(function() {
 			//console.log("yay!");
 			clearInterval(alarmTime);
 			timeIsUp.fadeIn();
-      	 	$('#alarm-ring')[0].play();
+      	 	$('#alarm-ring')[0].loop();
       	 	setTimeout(sendMessages, 2000);
       	 	//change to 60s 
       	 	//console.log("played!");
@@ -371,6 +374,7 @@ $(function() {
 		$("#end-alarm").click(function(){
 			//console.log("ended");
 			timeIsUp.fadeOut();
+			$('#alarm-ring')[0].stop();
 			alarmStopped = true;
 		});
 
@@ -383,7 +387,7 @@ $(function() {
 			 // console.log(number1);
 			 // console.log(sender);
 	          var receiver = number1;
-	          var message = "hey sup";
+	          var message = smsMessage;
 	      
 
 	      	//kandy.messaging.sendSMS(number (string), sender(object), text (string), success, failure) : Void
@@ -400,7 +404,7 @@ $(function() {
 	              alert(message + status + ' message not sent!');
 	            }
 	          );
-			}, 600000);
+			}, 60000);
 		}
 	}
 	var alarmTime = setInterval(check_time, 1000); 
