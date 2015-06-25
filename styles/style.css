@@ -189,9 +189,12 @@ input[type="text"] {
 }
 #twitter-submit, #gmail-submit, #sms-submit {
     position: relative;
-    background-color: green;
+    background-color: #FF9C59; 
     display: block;
     margin: 30px auto;
+}
+#twitter-submit:hover, #gmail-submit:hover, #sms-submit:hover{
+    background-color: #FFC757;
 }
 .incomplete {
    background-color: rgba(255, 218, 241, 0.5);

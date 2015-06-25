@@ -9,7 +9,7 @@ var number1;
 var twitterComplete = false;
 var smsComplete = false;
 var gmailComplete = false;
-var alarmStopped = false;
+var alarmStopped;
 var number1Valid, email1Valid, twitter1Valid;
 var alarmSet = false;
 var smsMessage;
@@ -20,8 +20,7 @@ window.onbeforeunload = function(e) {
 
 
 $(function() {
-	   var username;
-      
+	  var username;
       var username, UIState = {};
       
       UIState.authenticated = function() {
@@ -155,6 +154,7 @@ $(function() {
 	});
 
 	$('#sms-submit').click(function() {
+		console.log("sms");
 		event.preventDefault();
 		username = 'user1@snoozeyoulose.gmail.com'
         var apiKey = 'DAK02c0a220842d4a4ea87824de0474cd0f'
@@ -198,9 +198,8 @@ $(function() {
 	});
 
 	function complete() {
-		if ((smsComplete) && (gmailComplete) && (twitterComplete)) {
+		if ((smsComplete)) {
 			//console.log("everything!");
-			clearInterval(ifDone);
 			$(".connect").fadeOut("slow", function() {
 				 if ($("#clock").css('display') == 'none') {
    			 		 $('#clock').fadeIn("slow");
@@ -210,9 +209,6 @@ $(function() {
 	}
 
 	var ifDone = setInterval(complete, 1000); 
-});
-
-$(function() {
 	var timeUp = false;
 	var clock = $('#clock');
 	var alarm = clock.find('.alarm');
@@ -306,14 +302,11 @@ $(function() {
 	})();
 
 	//combodate
-
-	$(function(){
-   		 $('#time').combodate({
-   	     firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
-       	 minuteStep: 1,
-       	 customClass: 'choose-time'
-   		 });  
-	});
+   	 $('#time').combodate({
+   	    firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+       	minuteStep: 1,
+       	customClass: 'choose-time'
+   	});  
 
 	$('#setTime').click(function () {
 		alarmSet = true;
@@ -334,20 +327,21 @@ $(function() {
 	});
 
 	function reset() {
-	   $('#alarm-ring')[0].stop();
+		timeIsUp.fadeOut();
+		 $('#clock').fadeOut("slow", function() {
+		   	$('.setup').fadeIn("slow");
+		 });
+	   	$('#alarm-ring')[0].pause();
+		$('#alarm-ring')[0].currentTime = 0.0;
+		alarmStopped = true;
 		alarmSet = false;
 		timeUp = false;
-		timeIsUp.fadeOut();
-   		$('#clock').fadeOut("slow", function() {
-   			$('.setup').fadeIn("slow");
-   		});
    		twitterDisplayed = true;
 		smsDisplayed = false;
 		gmailDisplayed = false;
 		twitterComplete = false;
 		smsComplete = false;
 		gmailComplete = false;
-		alarmStopped = false;
 		number1Valid = false;
 		email1Valid = false;
 		twitter1Valid = false;
@@ -358,31 +352,31 @@ $(function() {
 		$("#emailTo1").val('email@email.com');
 		$("#number1").val('19100000000');
 	}
+	$("#end-alarm").click(function(){
+		reset();
+	});
+
 	function check_time(){
 		if (timeNow === indicatedTime) {
 			//console.log("yay!");
 			clearInterval(alarmTime);
 			timeIsUp.fadeIn();
-      	 	$('#alarm-ring')[0].loop();
-      	 	setTimeout(sendMessages, 2000);
+			console.log("here!");
+      	 	$('#alarm-ring')[0].play();
+      	 	if (alarmStopped != true) {
+      	 		setTimeout(sendMessages, 2000);
+      	 	}
       	 	//change to 60s 
       	 	//console.log("played!");
 		}	
 	};
 
-	function sendMessages() {
-		$("#end-alarm").click(function(){
-			//console.log("ended");
-			timeIsUp.fadeOut();
-			$('#alarm-ring')[0].stop();
-			alarmStopped = true;
-		});
 
+	function sendMessages() {
 		if (alarmStopped != true) {
+ 			console.log("you're screwed");
 			setTimeout(function() {
-			  reset();
-			  alert("sent!");
-			  //console.log("you're screwed");
+			 
 			  var sender = localStorage.getItem("user-name");
 			 // console.log(number1);
 			 // console.log(sender);
@@ -404,6 +398,9 @@ $(function() {
 	              alert(message + status + ' message not sent!');
 	            }
 	          );
+	          	setTimeout(function() {
+		   		reset();
+			}, 6000);
 			}, 60000);
 		}
 	}
