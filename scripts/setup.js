@@ -9,7 +9,7 @@ var number1;
 var twitterComplete = false;
 var smsComplete = false;
 var gmailComplete = false;
-var alarmStopped;
+var alarmStopped = false;
 var number1Valid, email1Valid, twitter1Valid;
 var alarmSet = false;
 var smsMessage;
@@ -353,6 +353,8 @@ $(function() {
 		$("#number1").val('19100000000');
 	}
 	$("#end-alarm").click(function(){
+		alarmStopped = true;
+		console.log(alarmStopped);
 		reset();
 	});
 
@@ -361,11 +363,17 @@ $(function() {
 			//console.log("yay!");
 			clearInterval(alarmTime);
 			timeIsUp.fadeIn();
-			console.log("here!");
       	 	$('#alarm-ring')[0].play();
-      	 	if (alarmStopped != true) {
-      	 		setTimeout(sendMessages, 2000);
-      	 	}
+      	 	setTimeout(function() {
+      	 		if (alarmStopped === false) {
+      	 		console.log("alarm not stopped");
+      	 		sendMessages();
+      	 		}
+      	 		else {
+      	 			console.log("alarm stopped");
+      	 		}
+      	 	}, 60000);
+ 
       	 	//change to 60s 
       	 	//console.log("played!");
 		}	
@@ -375,7 +383,6 @@ $(function() {
 	function sendMessages() {
 		if (alarmStopped != true) {
  			console.log("you're screwed");
-			setTimeout(function() {
 			 
 			  var sender = localStorage.getItem("user-name");
 			 // console.log(number1);
@@ -401,7 +408,6 @@ $(function() {
 	          	setTimeout(function() {
 		   		reset();
 			}, 6000);
-			}, 60000);
 		}
 	}
 	var alarmTime = setInterval(check_time, 1000); 
