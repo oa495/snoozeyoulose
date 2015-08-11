@@ -13,6 +13,12 @@ $(document).ready(function() {
       		  scrollTop: $("#about").offset().top
     		}, 2000);
 	});
+	$(".aboutsection-open").click(function() {
+		$(".explain").fadeIn("slow");
+	});
+	$("#cancel").click(function() {
+		$(".explain").fadeOut("slow");
+	});
 });
 function snore() {
 	var daZzz = document.createElement('span');

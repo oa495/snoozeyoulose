@@ -9,7 +9,11 @@ body {
     background-color: #FFC757;
     font-family: "Rokkitt";
 }
-
+h2 {
+    text-transform: uppercase;
+    font-family: "Paytone One";
+    text-align: center;
+}
 a {
     text-decoration: none;
     color: black;
@@ -25,7 +29,6 @@ p {
     padding: 10px;
 }
 img {
-    margin-top: 50px;
     padding: 10px;
 }
 
@@ -38,7 +41,7 @@ main > p {
     text-align: center;
 }
 footer {
-    background-color: #FF9C59; 
+    background-color: #FFC757;
     height: 80px;
 }
 footer > p {
@@ -79,15 +82,33 @@ input[type="text"] {
 
 }
 .explain {
-    height: 500px;
+    /*display: none; */
+    position: fixed;
+    z-index: 15; 
+    background-color: white;
+    height:600px;
+    width:800px;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    /* Set margins to offset 50% of the w/h */
+    margin: -150px 0 0 -400px;
 }
 .detailed-about {
-    max-width: 650px;
     position: relative;
-    text-indent: 40px;
-    margin-top: 200px;
+    margin-top: 100px;
+    width: inherit;
 }
-
+.detailed-about > p {
+    text-indent: 40px;
+    font-size: 22px;
+    margin-top: 30px;
+    max-width: 520px;
+}
+#cancel {
+    float: right;
+    padding: 20px;
+}
 .button {
     font-size: 13px;
     border: 5px solid white;
@@ -148,6 +169,12 @@ input[type="text"] {
     float: center;
     margin-top: 10%;
     text-transform: uppercase;
+}
+.aboutsection-open {
+    opacity: 0.4;
+}
+.aboutsection-open:hover {
+    cursor: pointer;
 }
 
 .choose-time {
