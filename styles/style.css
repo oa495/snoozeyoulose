@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Rokkitt|Paytone+One);
 
 * {
     margin:0;
@@ -9,7 +10,7 @@ body {
     background-color: #FFC757;
     font-family: "Rokkitt";
 }
-h2 {
+h1, h2 {
     text-transform: uppercase;
     font-family: "Paytone One";
     text-align: center;
@@ -175,6 +176,37 @@ input[type="text"] {
 }
 .aboutsection-open:hover {
     cursor: pointer;
+}
+/*** team page **/
+.team {
+    padding: 50px;
+    margin-top: 100px;
+    background-color: #FF9C59;
+}
+.row {
+    width: 90%;
+    margin: 0 auto;
+    list-style: none;
+    overflow: hidden;
+    height: 60vh;
+}
+.member {
+    width: 33%;
+    margin: 0 auto;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.member > img {
+    max-width: 500px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.desc {
+    width: 200px;
+    text-align: center;
+    padding: 10px;
 }
 
 .choose-time {
@@ -610,5 +642,6 @@ input[type="text"] {
     right:20px;
     font-size:12px;
 }
+
 
 
